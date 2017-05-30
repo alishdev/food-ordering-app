@@ -1,7 +1,7 @@
 // MenuScreen.js
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import Expo from 'expo';
+import {View, Text, ScrollView, Image} from 'react-native';
+//import Expo, {AppLoading} from 'expo';
 import MenuItem from '../components/MenuItem';
 
 export default class Menu extends React.Component{
@@ -14,20 +14,30 @@ export default class Menu extends React.Component{
         isReady: false,
         store: this.props.route.params.store,
         categories: []
-    }
+    };
     componentWillMount(){
         this._getMenu();
     }
     render(){
-        if (!this.state.isReady)
-            return (<Expo.AppLoading />);
-        return (
-            <View style={{flex:1}}>
-                <ScrollView>
-                    {this._renderCategories()}
-                </ScrollView>
-            </View>
-        );
+        if (!this.state.isReady) {
+            return (
+                <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>    
+                    <Image
+                        source={require('../assets/icons/loading.gif')}
+                        style={{width:100, height:100}}
+                        />
+                </View>
+            );
+        }
+        else{
+            return (
+                <View style={{flex:1}}>
+                    <ScrollView>
+                        {this._renderCategories()}
+                    </ScrollView>
+                </View>
+            )
+        }
     }
 
     _renderCategories(){

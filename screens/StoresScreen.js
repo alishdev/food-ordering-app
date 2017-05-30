@@ -1,38 +1,9 @@
 // stores.js
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import Expo, {  Asset,  Components} from 'expo';
+import {View, Text, ScrollView, Image} from 'react-native';
 import StoreItem from '../components/StoreItem';
 
-const dummyData = [
-/*    {
-        storeid: 1,
-        name: 'Californian',
-        address1: '8606 Daniel Street',
-        zip: 21072,
-        state: 'CA',
-        city: 'San Juan',
-        phone: '(454)565-9080'
-    },
-    {
-        storeid: 2,
-        name: 'Mid West',
-        address1: '6060 Baniel Street',
-        zip: 78783,
-        state: 'IL',
-        city: 'Warshington',
-        phone: '(324)345-5654'
-    },
-    {
-        storeid: 3,
-        name: 'North Southern',
-        address1: '474 Ganiel Street',
-        zip: 56432,
-        state: 'MI',
-        city: 'San Franisco',
-        phone: '(543)679-1482'
-    }*/
-];
+const dummyData = [];
 export default class StoresScreen extends React.Component{
     state = {
         isReady: false,
@@ -51,7 +22,14 @@ export default class StoresScreen extends React.Component{
 
   render() {
     if (!this.state.isReady) {
-      return <Expo.AppLoading />;
+      return (
+                <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>    
+                    <Image
+                        source={require('../assets/icons/loading.gif')}
+                        style={{width:100, height:100}}
+                        />
+                </View>
+            );
     }
     return (
         <ScrollView style={{backgroundColor: '#eee'}}>    
